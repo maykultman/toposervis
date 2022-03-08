@@ -1,30 +1,47 @@
-<?php
-/**
- * The template for displaying the footer
- *
- * Contains the closing of the #content div and all content after.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package Toposervis
- */
-
-?>
-
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'toposervis' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'toposervis' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'toposervis' ), 'toposervis', '<a href="http://devlover.mx">Develover</a>' );
-				?>
-		</div><!-- .site-info -->
+	</main>
+	<footer id="colophon" class="site-footer py-5">
+		<div class="container py-5">
+			<div class="row">
+				<div class="col-3">
+					<?php dynamic_sidebar( 'sidebar-1' ); ?>
+				</div>
+				<div class="col-3">
+					<?php dynamic_sidebar( 'Dirección' ); ?>
+				</div>
+				<div class="col-3">
+					<?php dynamic_sidebar( 'Teléfonos' ); ?>
+				</div>
+				<div class="col-3">
+					<div class="nav">
+						<div class="nav-item">
+							<div class="nav-link pt-0 text-white">
+								<?php dynamic_sidebar( 'Síguenos' ); ?>
+							</div>
+						</div>
+					</div>
+					<ul class="nav mx-0">
+						<li class="nav-item">
+							<a href="#" class="nav-link"><img src="<?=assets('img/facebook.svg')?>" alt="Toposervis"></a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link"><img src="<?=assets('img/instagram.svg')?>" alt="Toposervis"></a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link"><img src="<?=assets('img/whatsapp.svg')?>" alt="Toposervis"></a>	
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-3">
+					<?php dynamic_sidebar( 'Horarios' ); ?>
+				</div>
+				<div class="col-3">
+					TOPOSERVIS - <?=date('Y')?>
+				</div>
+			</div>
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

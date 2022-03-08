@@ -1,11 +1,14 @@
 .sticky {
 	display: block;
 }
-
-.post,
-.page {
-	margin: 0 0 1.5em;
+.page-template-contact{
+	h2{
+		font-weight: bold;
+		margin-bottom: 30px;
+		text-transform: uppercase;
+	}
 }
+
 
 .updated:not(.published) {
 	display: none;

@@ -1,3 +1,15 @@
 body {
+	letter-spacing:0.4px;
 	background: $color__background-body; // Fallback for when there is no custom background color defined.
+	color: #103542;
+	margin-bottom: 0px;
+}
+footer{
+	a{
+		color:#fff;
+	}
+	color:#fff;
+	font-size: 12px;
+	font-weight: regular!important;
+	background:$color__background-footer;
 }

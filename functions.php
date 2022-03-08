@@ -134,18 +134,47 @@ function toposervis_widgets_init() {
 }
 add_action( 'widgets_init', 'toposervis_widgets_init' );
 
+add_filter( 'get_custom_logo', 'change_logo_class' );
+
+
+function change_logo_class( $html ) {
+
+    // $html = str_replace( 'custom-logo', 'your-custom-class', $html );
+    $html = str_replace( 'custom-logo-link', 'navbar-brand', $html );
+
+    return $html;
+}
+
 /**
  * Enqueue scripts and styles.
  */
+function _namespace_menu_item_class( $classes, $item ) {       
+    $classes[] = "nav-item"; // you can add multiple classes here
+    return $classes;
+}
+add_filter( 'nav_menu_css_class' , '_namespace_menu_item_class' , 10, 2 );
+
+function _namespace_modify_menuclass($ulclass) {
+    return preg_replace('/<a /', '<a class="nav-link"', $ulclass);
+}
+
+add_filter('wp_nav_menu', '_namespace_modify_menuclass');
+
 function toposervis_scripts() {
-	wp_enqueue_style( 'toposervis-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_script( 'toposervis-toastjs', get_template_directory_uri() . '/js/toast-js/toast.min.js', array(), _S_VERSION, true );
+	wp_enqueue_style( 'toposervis-toastcss',get_template_directory_uri().'/js/toast-js/toast.css', array(), _S_VERSION );
+
+	// get_stylesheet_uri()
+	wp_enqueue_style( 'toposervis-style',get_template_directory_uri().'/sass/style.css', array(), _S_VERSION );
 	wp_style_add_data( 'toposervis-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'toposervis-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'toposervis-main', get_template_directory_uri() . '/js/main.js', array(), _S_VERSION, true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+
+
+	// if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+	// 	wp_enqueue_script( 'comment-reply' );
+	// }
 }
 add_action( 'wp_enqueue_scripts', 'toposervis_scripts' );
 
@@ -167,7 +196,9 @@ require get_template_directory() . '/inc/template-functions.php';
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+// require get_template_directory() . '/inc/customizer.php';
+
+require get_template_directory() . '/inc/api.php';
 
 /**
  * Load Jetpack compatibility file.
